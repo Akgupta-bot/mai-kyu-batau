@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
+import { Link } from 'react-router-dom'; // 
 const Hero = () => {
   return (
     <section className="min-h-screen pt-32 pb-16 flex items-center justify-center bg-slate-900">
@@ -19,13 +19,16 @@ const Hero = () => {
             An interactive game that teaches you to win without compromise. Make the right decisions to build a legacy you can be proud of.
           </p>
           <div className="mt-10 flex justify-center lg:justify-start">
-            <motion.button
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-8 rounded-full transition-shadow duration-300 hover:shadow-glow"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Your Journey
-            </motion.button>
+            {/* 2. Wrap the button with the Link component */}
+            <Link to="/login">
+              <motion.button
+                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-8 rounded-full transition-shadow duration-300 hover:shadow-glow"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start Your Journey
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
         
