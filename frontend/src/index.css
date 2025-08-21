@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+body {
+  /* This sets a solid black fallback color */
+  background-color: #000000;
+  
+  /* This is an embedded SVG that creates a subtle grid pattern */
+  background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 0v28M0 14h28' stroke-width='0.5' stroke='%23374151'/%3E%3C/svg%3E");
+}
