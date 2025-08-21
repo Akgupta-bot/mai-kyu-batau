@@ -8,7 +8,7 @@ function App() {
     <div className="bg-slate-900 text-slate-200 font-body">
       <Navbar />
       <main>
-        {/* This Outlet is the placeholder for your pages */}
+        
         <Outlet />
       </main>
       <Footer />

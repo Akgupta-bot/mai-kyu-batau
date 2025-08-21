@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import LandingPage from './pages/LandingPage.jsx';
-import AuthPage from './pages/AuthPage.jsx'; // Import the new page
+import AuthPage from './pages/AuthPage.jsx'; 
 import './index.css';
 
 const router = createBrowserRouter([
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
-        path: "login", // Add this route
+        path: "login", 
         element: <AuthPage />,
       },
     ],
