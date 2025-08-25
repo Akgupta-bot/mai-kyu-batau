@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import AuthPage from './pages/AuthPage.jsx'; 
+import AICoachPage from './pages/AICoachPage.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
         path: "login", 
         element: <AuthPage />,
       },
+      { path: "coach", element: <AICoachPage /> },
     ],
   },
 ]);
