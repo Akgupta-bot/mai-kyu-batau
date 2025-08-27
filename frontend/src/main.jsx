@@ -5,6 +5,8 @@ import App from './App.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import AuthPage from './pages/AuthPage.jsx'; 
 import AICoachPage from './pages/AICoachPage.jsx';
+import PathUI from './pages/PathUI.jsx';
+import StoryPage from './pages/StoryPage.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -21,6 +23,8 @@ const router = createBrowserRouter([
         element: <AuthPage />,
       },
       { path: "coach", element: <AICoachPage /> },
+      { path: "path", element: <PathUI /> },
+      { path: "story/:levelId", element: <StoryPage /> },
     ],
   },
 ]);
