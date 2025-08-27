@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-// import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-// import 'react-pdf/dist/esm/Page/TextLayer.css';
+
 import { Link } from 'react-router-dom';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import './StoryPage.css';
 
-// Configure the worker to render the PDF
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const StoryPage = () => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const pdfPath = "/coach_supply.pdf"; // The path to the PDF in your 'public' folder
+  const pdfPath = "/coach_supply.pdf"; 
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -29,7 +28,7 @@ const StoryPage = () => {
   return (
     <div className="min-h-screen animated-gradient flex flex-col items-center p-4">
       <div className="w-full max-w-5xl mx-auto flex-grow flex flex-col">
-        {/* --- Header & Navigation --- */}
+       
         <div className="flex-shrink-0 flex justify-between items-center bg-slate-900/50 p-4 rounded-t-lg border-b border-slate-700">
           <Link to="/path" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
             <FiArrowLeft />
@@ -48,7 +47,7 @@ const StoryPage = () => {
           </div>
         </div>
 
-        {/* --- PDF Viewer Area --- */}
+        
         <div className="flex-grow flex items-center justify-center bg-slate-900 rounded-b-lg overflow-hidden">
           <Document
             file={pdfPath}
