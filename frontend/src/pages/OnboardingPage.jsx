@@ -41,13 +41,14 @@ const OnboardingPage = () => {
     try {
      
       const token = localStorage.getItem('token');
+      console.log("Token:", token); // <-- check if it's null or correct JWT
       if (!token) {
         alert('You are not logged in!');
         navigate('/login');
         return;
       }
 
-      const response = await axios.post('http://localhost:4000/api/onboarding', 
+      const response = await axios.post('http://localhost:5000/api/onboarding', 
         {
           age: parseInt(age),
           sports: selectedSports,
