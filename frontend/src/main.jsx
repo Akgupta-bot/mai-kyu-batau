@@ -20,7 +20,6 @@ import './index.css';
 import StoryMode from './pages/StoryMode.jsx';
 
 const router = createBrowserRouter([
-
   {
     path: "/",
     element: <App />,
