@@ -41,6 +41,7 @@ const router = createBrowserRouter([
       { path: "path", element: <PathUI /> },
       { path: "story/:levelId", element: <StoryPage /> },
       { path: 'story/play', element: <StoryMode /> },
+<<<<<<< HEAD
       {
         path: "/onboarding",
         element: <OnboardingPage />,
@@ -54,6 +55,25 @@ const router = createBrowserRouter([
       },
     ],
   },
+=======
+    ],
+  },
+  {
+    element: <DashboardLayout />,
+    children: [
+      { path: "dashboard", element: <DashboardPage /> },
+      { path: "profile", element: <ProfilePage /> },
+    ],
+  },
+  {
+    path: "/login",
+    element: <AuthPage />,
+  },
+  {
+    path: "/onboarding",
+    element: <OnboardingPage />,
+  },
+>>>>>>> 6954c5f (Added story mode)
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
