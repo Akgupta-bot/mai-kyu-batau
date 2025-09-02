@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import pandaAvatar from '../assets/Panda.mp4'; 
+import pandaAvatar from '../assets/Panda.mp4';
 import { FiUser, FiEdit2, FiShield, FiBell, FiLock } from 'react-icons/fi';
 
 const ProfileCard = ({ children, className }) => (
@@ -25,6 +25,7 @@ const SettingsItem = ({ icon, title, description, buttonText }) => (
 );
 
 const ProfilePage = () => {
+
   const mockUserData = {
     name: 'Harshit Sinha',
     email: 'harshit.sinha@example.com',
@@ -35,16 +36,16 @@ const ProfilePage = () => {
   };
 
   return (
-    <motion.div 
-      className="p-8 text-white bg-black min-h-screen"
+    <motion.div
+      className="p-8 text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       <h2 className="text-3xl font-bold text-white mb-8">My Profile</h2>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         <div className="lg:col-span-1">
           <ProfileCard className="flex flex-col items-center text-center">
             <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/30 mb-4">
@@ -66,6 +67,7 @@ const ProfilePage = () => {
           </ProfileCard>
         </div>
 
+
         <div className="lg:col-span-2 space-y-8">
           <ProfileCard>
             <h3 className="text-xl font-bold mb-4">Player Stats</h3>
@@ -84,13 +86,13 @@ const ProfilePage = () => {
               </div>
             </div>
           </ProfileCard>
-          
+
           <ProfileCard>
             <h3 className="text-xl font-bold mb-2">Account Settings</h3>
             <div>
-              <SettingsItem icon={<FiUser size={20}/>} title="Personal Information" description="Update your name and contact details." buttonText="Update" />
-              <SettingsItem icon={<FiLock size={20}/>} title="Password" description="Change your account password." buttonText="Change" />
-              <SettingsItem icon={<FiBell size={20}/>} title="Notifications" description="Manage your notification preferences." buttonText="Manage" />
+              <SettingsItem icon={<FiUser size={20} />} title="Personal Information" description="Update your name and contact details." buttonText="Update" />
+              <SettingsItem icon={<FiLock size={20} />} title="Password" description="Change your account password." buttonText="Change" />
+              <SettingsItem icon={<FiBell size={20} />} title="Notifications" description="Manage your notification preferences." buttonText="Manage" />
             </div>
           </ProfileCard>
         </div>

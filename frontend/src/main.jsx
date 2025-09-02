@@ -14,30 +14,41 @@ import PathUI from './pages/PathUI.jsx';
 import StoryPage from './pages/StoryPage.jsx';
 import AICoachPage from './pages/AICoachPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx'; 
+import ProfilePage from './pages/ProfilePage.jsx';
+<<<<<<< HEAD
 import EventsPage from './pages/EventsPage.jsx';
 
 import "./index.css";
 import StoryMode from "./pages/StoryMode.jsx";
+=======
+
+import './index.css';
+>>>>>>> 7771a7e (Added dashboard and profile prototype)
 
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <App />,
     children: [
+<<<<<<< HEAD
       {
         path: "/",
         element: <LandingPage />,
       },
 
-    
+
       {
         path: "login",
         element: <AuthPage />,
       },
+=======
+      { path: "/", element: <LandingPage /> },
+>>>>>>> 7771a7e (Added dashboard and profile prototype)
       { path: "coach", element: <AICoachPage /> },
 
       { path: "story/:levelId", element: <StoryPage /> },
+<<<<<<< HEAD
       { path: "story/play", element: <StoryMode /> },
       {
         path: "/onboarding",
@@ -53,7 +64,30 @@ const router = createBrowserRouter([
     ],
   },
   { path: "path", element: <PathUI /> },
-  { path: "event", element: <EventsPage/>}
+  { path: "event", element: <EventsPage /> }
+=======
+    ],
+  },
+
+
+  {
+    element: <DashboardLayout />,
+    children: [
+      { path: "dashboard", element: <DashboardPage /> },
+      { path: "profile", element: <ProfilePage /> },
+    ],
+  },
+
+
+  {
+    path: "/login",
+    element: <AuthPage />,
+  },
+  {
+    path: "/onboarding",
+    element: <OnboardingPage />,
+  },
+>>>>>>> 7771a7e (Added dashboard and profile prototype)
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

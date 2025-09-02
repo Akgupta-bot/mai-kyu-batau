@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       variants={sidebarVariants}
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      className="bg-black backdrop-blur-sm border-r border-slate-700 p-4 flex flex-col relative"
+      className="bg-slate-900/80 backdrop-blur-sm border-r border-slate-700 p-4 flex flex-col relative"
     >
       {/* --- Toggle Button --- */}
       <button
@@ -64,9 +64,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       </button>
 
       <motion.div
-        className={`flex items-center ${
-          isOpen ? "gap-4" : "justify-center"
-        } mb-10`}
+        className={`flex items-center ${isOpen ? "gap-4" : "justify-center"
+          } mb-10`}
       >
         <FiGrid size={32} className="text-blue-400 flex-shrink-0" />
         <AnimatePresence>
@@ -87,13 +86,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             <li key={link.name} className="mb-2">
               <Link
                 to={link.path}
-                className={`flex items-center py-3 px-4 rounded-lg text-slate-300 transition-colors ${
-                  isOpen ? "gap-4" : "justify-center"
-                } ${
-                  location.pathname === link.path
+                className={`flex items-center py-3 px-4 rounded-lg text-slate-300 transition-colors ${isOpen ? "gap-4" : "justify-center"
+                  } ${location.pathname === link.path
                     ? "bg-blue-600 text-white"
                     : "hover:bg-slate-800 hover:text-white"
-                }`}
+                  }`}
               >
                 <div className="flex-shrink-0">{link.icon}</div>
                 <AnimatePresence>
@@ -115,9 +112,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <div className={`border-t border-slate-700 pt-4`}>
         <Link
           to="/profile"
-          className={`flex items-center group ${
-            isOpen ? "gap-3" : "justify-center"
-          }`}
+          className={`flex items-center group ${isOpen ? "gap-3" : "justify-center"
+            }`}
         >
           <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-slate-700 group-hover:border-blue-500 transition-colors">
             <video
@@ -139,9 +135,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </AnimatePresence>
         </Link>
         <button
-          className={`w-full flex items-center mt-4 py-3 px-4 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-red-400 transition-colors ${
-            isOpen ? "gap-4" : "justify-center"
-          }`}
+          className={`w-full flex items-center mt-4 py-3 px-4 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-red-400 transition-colors ${isOpen ? "gap-4" : "justify-center"
+            }`}
         >
           <FiLogOut size={24} className="flex-shrink-0" />
           <AnimatePresence>
