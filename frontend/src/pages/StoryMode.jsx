@@ -1,26 +1,57 @@
+import { useEffect, useState } from 'react'
+
+import client from '../../services/elevenLabs'
+
 import BasketBallImg from '/basketball-court.jpg'
 import AnimatedCharacter from '/animated-character-unscreen.gif'
 import AnimatedCharacterFixed from '/animated-character-unscreen-fixed.png'
-import { useEffect, useState } from 'react'
 import QuestionCard from '../components/story-mode/QuestionCard'
-import client from '../../services/elevenLabs'
 import LyffyAudio from '/luffy.mp3'
 
-const SCRIPT = {
-    'displayText': 'Let us start the scenario',
-    'player1': 'Hey! how are you?',
-    'player2': 'I am fine, what about you?'
-}
+// LLM Output Structure
+const LLM_OUTPUT = [
+    { speaker: "narrator", text: "Let us start the scenario" },
+    { speaker: "player1", text: "Hey! how are you?" },
+    { speaker: "player2", text: "I am fine, what about you?" }
+]
+
+// Sound Output Structure
+const SOUND_OUTPUT = [
+    { speaker: "narrator", audio: LyffyAudio },
+    { speaker: "player1", audio: LyffyAudio },
+    { speaker: "player2", audio: LyffyAudio }
+]
+
+// Function to map speaker and sound
+function mapTextToSound(script, sounds) {
+    return script.map((line, index) => ({
+        ...line,
+        audio: sounds[index]?.audio || null,
+        side: line.speaker === "player1" ? "left" : line.speaker === "player2" ? "right" : "center"
+    }))
+};
+
+const DIALOGUE = mapTextToSound(LLM_OUTPUT, SOUND_OUTPUT);
+
 
 export default function StoryMode() {
     const [characterPlay, setCharacterPlay] = useState(false);
     const [isGameStart, setIsGameStart] = useState(false);
+    const [currentLine, setCurrentLine] = useState(0);
 
     // Function to Start the Module
     function handlePlay() {
         setIsGameStart(true)
 
         // 1) Use the cached audio to generate sound using React Query
+
+        /**
+         *   - Cache Audio Files ? 
+         *   - Will have to keep track of current audio being played, text
+         *     being displayed and character in action. 
+         */
+
+        setCurrentLine(0)
     }
 
     // Function to start Character Movement & Audio
@@ -29,20 +60,27 @@ export default function StoryMode() {
     }
 
     useEffect(() => {
-        async function handleStop() {
-            await client.textToSpeech.convert("JBFqnCBsd6RMkjVDRZzb", {
-                outputFormat: "mp3_44100_128",
-                text: "The first move is what sets everything in motion.",
-                modelId: "eleven_multilingual_v2"
-            });
+        if (!isGameStart || !DIALOGUE[currentLine]) return
+        const audio = new Audio(DIALOGUE[currentLine].audio)
+        audio.play()
+
+        audio.onended = () => {
+            setCurrentLine((prev) => (prev + 1 < DIALOGUE.length ? prev + 1 : prev))
+        }
+
+        return () => {
+            audio.pause()
+            audio.currentTime = 0
         }
 
         // 1) Fetch Storyline
         // 2) Generate audio based on Storyline
         // 3) Save it in state and use it ( React Query )
 
-        setCharacterPlay((play) => !play)
-    }, [])
+        // setCharacterPlay((play) => !play)
+    }, [currentLine, isGameStart])
+
+    const isNarrator = DIALOGUE[currentLine]?.side === "center";
 
     return (
         <div className="h-screen w-full overflow-hidden flex flex-col items-center justify-center space-y-6 p-4">
@@ -59,57 +97,50 @@ export default function StoryMode() {
                     <h1>Please Press Start...</h1>
                 </div>}
 
-                {isGameStart && <>{/* Left Character */}
-                    <div className="absolute left-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6">
-                        {!characterPlay && (
-                            <>
-                                <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
-                                    Hey there
+                {isGameStart && (
+                    <>
+                        {/* Narrator */}
+                        {isNarrator && (
+                            <div className="absolute top-10 w-full flex justify-center">
+                                <p className="text-2xl text-white bg-black/60 px-4 py-2 rounded-lg">
+                                    {DIALOGUE[currentLine].text}
                                 </p>
-                                <img
-                                    src={AnimatedCharacter}
-                                    className="w-125 cursor-pointer"
-                                    onClick={handlePlay}
-                                />
-                            </>
+                            </div>
                         )}
 
-                        {characterPlay && (
-                            <>
-                                <img
-                                    src={AnimatedCharacterFixed}
-                                    className="w-50 cursor-pointer"
-                                    onClick={handlePlay}
-                                />
-                            </>
-                        )}
-                    </div>
-
-                    {/* Right Character */}
-                    <div className="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6">
-                        {characterPlay && (
-                            <>
-                                <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
-                                    Hey, how have you been?
-                                </p>
-                                <img
-                                    src={AnimatedCharacter}
-                                    className="w-125 cursor-pointer"
-                                    onClick={handlePlay}
-                                />
-                            </>
+                        {/* Left Character (only if not narrator) */}
+                        {!isNarrator && (
+                            <div className="absolute left-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6">
+                                {DIALOGUE[currentLine]?.side === "left" ? (
+                                    <>
+                                        <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
+                                            {DIALOGUE[currentLine]?.text}
+                                        </p>
+                                        <img src={AnimatedCharacter} className="w-125 cursor-pointer" />
+                                    </>
+                                ) : (
+                                    <img src={AnimatedCharacterFixed} className="w-50 cursor-pointer" />
+                                )}
+                            </div>
                         )}
 
-                        {!characterPlay && (
-                            <>
-                                <img
-                                    src={AnimatedCharacterFixed}
-                                    className="w-50 cursor-pointer"
-                                    onClick={handlePlay}
-                                />
-                            </>
+                        {/* Right Character (only if not narrator) */}
+                        {!isNarrator && (
+                            <div className="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6">
+                                {DIALOGUE[currentLine]?.side === "right" ? (
+                                    <>
+                                        <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
+                                            {DIALOGUE[currentLine]?.text}
+                                        </p>
+                                        <img src={AnimatedCharacter} className="w-125 cursor-pointer" />
+                                    </>
+                                ) : (
+                                    <img src={AnimatedCharacterFixed} className="w-50 cursor-pointer" />
+                                )}
+                            </div>
                         )}
-                    </div></>}
+                    </>
+                )}
             </div>
             <QuestionCard isGameStart={isGameStart} onHandlePlay={handlePlay} />
         </div>
