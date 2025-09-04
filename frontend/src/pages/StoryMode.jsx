@@ -4,10 +4,9 @@ import { useEffect, useState } from 'react'
 import client from '../../services/elevenLabs'
 
 import BasketBallImg from '/basketball-court.jpg'
-import AnimatedCharacter from '/animated-character-unscreen.gif'
-import AnimatedCharacterFixed from '/animated-character-unscreen-fixed.png'
 import QuestionCard from '../components/story-mode/QuestionCard'
-import LyffyAudio from '/luffy.mp3'
+import LyffyAudio from '/ko.mp3'
+import StoryCharacter from '../components/story-mode/StoryCharacter'
 
 // LLM Output Structure
 const LLM_OUTPUT = [
@@ -109,37 +108,19 @@ export default function StoryMode() {
                             </div>
                         )}
 
-                        {/* Left Character (only if not narrator) */}
-                        {!isNarrator && (
-                            <div className="absolute left-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6">
-                                {DIALOGUE[currentLine]?.side === "left" ? (
-                                    <>
-                                        <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
-                                            {DIALOGUE[currentLine]?.text}
-                                        </p>
-                                        <img src={AnimatedCharacter} className="w-125 cursor-pointer" />
-                                    </>
-                                ) : (
-                                    <img src={AnimatedCharacterFixed} className="w-50 cursor-pointer" />
-                                )}
-                            </div>
-                        )}
+                        <StoryCharacter
+                            isNarrator={isNarrator}
+                            characterSide="left"
+                            isActive={DIALOGUE[currentLine]?.side === "left"}
+                            dialogue={DIALOGUE[currentLine]?.side === "left" ? DIALOGUE[currentLine].text : ""}
+                        />
 
-                        {/* Right Character (only if not narrator) */}
-                        {!isNarrator && (
-                            <div className="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6">
-                                {DIALOGUE[currentLine]?.side === "right" ? (
-                                    <>
-                                        <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
-                                            {DIALOGUE[currentLine]?.text}
-                                        </p>
-                                        <img src={AnimatedCharacter} className="w-125 cursor-pointer" />
-                                    </>
-                                ) : (
-                                    <img src={AnimatedCharacterFixed} className="w-50 cursor-pointer" />
-                                )}
-                            </div>
-                        )}
+                        <StoryCharacter
+                            isNarrator={isNarrator}
+                            characterSide="right"
+                            isActive={DIALOGUE[currentLine]?.side === "right"}
+                            dialogue={DIALOGUE[currentLine]?.side === "right" ? DIALOGUE[currentLine].text : ""}
+                        />
                     </>
                 )}
             </div>
