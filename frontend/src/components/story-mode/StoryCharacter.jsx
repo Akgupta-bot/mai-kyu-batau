@@ -5,7 +5,10 @@ export default function StoryCharacter({ isNarrator, characterSide, isActive, di
     if (isNarrator) return null
 
     return (
-        <div className={`absolute ${characterSide}-5 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6`}>
+        <div
+            className={`absolute top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6 ${characterSide === "left" ? "left-10" : "right-10"
+                }`}
+        >
             {isActive && (
                 <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
                     {dialogue}

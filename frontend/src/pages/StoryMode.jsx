@@ -109,19 +109,21 @@ export default function StoryMode() {
                             </div>
                         )}
 
-                        <StoryCharacter
-                            isNarrator={isNarrator}
-                            characterSide="left"
-                            isActive={DIALOGUE[currentLine]?.side === "left"}
-                            dialogue={DIALOGUE[currentLine]?.side === "left" ? DIALOGUE[currentLine].text : ""}
-                        />
+                        <div className="absolute inset-0 flex justify-between items-center px-12">
+                            <StoryCharacter
+                                isNarrator={isNarrator}
+                                characterSide="left"
+                                isActive={DIALOGUE[currentLine]?.side === "left"}
+                                dialogue={DIALOGUE[currentLine]?.side === "left" ? DIALOGUE[currentLine].text : ""}
+                            />
 
-                        <StoryCharacter
-                            isNarrator={isNarrator}
-                            characterSide="right"
-                            isActive={DIALOGUE[currentLine]?.side === "right"}
-                            dialogue={DIALOGUE[currentLine]?.side === "right" ? DIALOGUE[currentLine].text : ""}
-                        />
+                            <StoryCharacter
+                                isNarrator={isNarrator}
+                                characterSide="right"
+                                isActive={DIALOGUE[currentLine]?.side === "right"}
+                                dialogue={DIALOGUE[currentLine]?.side === "right" ? DIALOGUE[currentLine].text : ""}
+                            />
+                        </div>
                     </>
                 )}
 
