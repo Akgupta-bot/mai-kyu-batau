@@ -16,7 +16,10 @@ export default function StoryCharacter({ isNarrator, characterSide, isActive, di
             )}
             <img
                 src={isActive ? AnimatedCharacter : AnimatedCharacterFixed}
-                className={isActive ? "w-125 cursor-pointer" : "w-50 opacity-70"}
+                className={`
+                    transition-all duration-700 ease-in-out
+                    ${isActive ? "w-125 opacity-100" : "w-50 opacity-70"}
+                `}
             />
         </div>
     )
