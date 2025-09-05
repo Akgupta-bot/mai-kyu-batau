@@ -7,6 +7,7 @@ import BasketBallImg from '/basketball-court.jpg'
 import QuestionCard from '../components/story-mode/QuestionCard'
 import LyffyAudio from '/ko.mp3'
 import StoryCharacter from '../components/story-mode/StoryCharacter'
+import ToggleScene from '../components/story-mode/ToggleScene'
 
 // LLM Output Structure
 const LLM_OUTPUT = [
@@ -85,7 +86,7 @@ export default function StoryMode() {
     return (
         <div className="h-screen w-full overflow-hidden flex flex-col items-center justify-center space-y-6 p-4">
             {/* BASKETBALL SCENE */}
-            <div className="w-[60%] h-[50%] mt-15 relative rounded-2xl overflow-hidden">
+            <div className="w-[60%] h-[50%] mt-15 relative rounded-2xl">
                 <img
                     src={BasketBallImg}
                     alt="Basketball Court"
@@ -123,7 +124,11 @@ export default function StoryMode() {
                         />
                     </>
                 )}
+
+                <ToggleScene />
             </div>
+
+
             <QuestionCard isGameStart={isGameStart} onHandlePlay={handlePlay} />
 =======
 import BasketBallImg from '/basketball-court.jpg'
