@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend } from 'react-icons/fi';
-import AiAvatar from '../components/AiAvatar'; 
+import AiAvatar from '../components/AiAvatar';
 
 const AICoachPage = () => {
   const [messages, setMessages] = useState([
@@ -17,7 +17,7 @@ const AICoachPage = () => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (input.trim() === '') return;
 
@@ -25,14 +25,36 @@ const AICoachPage = () => {
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
 
-    setTimeout(() => {
+    try {
+      // send POST request to FastAPI backend
+      const res = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          session_id: "user123", // or dynamically assign per user
+          message: input,
+        }),
+      });
+
+      const data = await res.json();
+
       const aiResponse = {
         sender: 'ai',
-        text: "That's a great question. While I'm still in development, in the full game I'll be able to provide detailed information from the WADA database. For now, keep playing fair!",
+        text: data.reply || "Sorry, I couldn’t generate a response.",
       };
+
       setMessages((prev) => [...prev, aiResponse]);
-    }, 1000);
+    } catch (error) {
+      console.error("Error talking to backend:", error);
+      setMessages((prev) => [
+        ...prev,
+        { sender: 'ai', text: "⚠️ Server error. Please try again later." },
+      ]);
+    }
   };
+
 
   const suggestionPrompts = [
     'What are the side effects of steroids?',
@@ -58,9 +80,9 @@ const AICoachPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              
+
               {msg.sender === 'ai' && <AiAvatar />}
-              
+
               <div className={`max-w-lg p-3 rounded-xl ${msg.sender === 'user' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300'}`}>
                 <p>{msg.text}</p>
               </div>
@@ -69,7 +91,7 @@ const AICoachPage = () => {
           <div ref={chatEndRef} />
         </div>
 
-        
+
         <div className="grid grid-cols-2 gap-4 mb-4">
           {suggestionPrompts.map((prompt, index) => (
             <motion.button
