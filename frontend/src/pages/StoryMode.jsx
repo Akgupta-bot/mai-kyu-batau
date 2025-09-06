@@ -373,7 +373,7 @@ export default function StoryMode() {
                 {/* dark veil for readability */}
                 <div className="absolute inset-0 bg-black/40" />
 
-                {/* Title strip (requirement: show title from LLM in ToggleScenario and here during setup) */}
+                {/* Title strip */}
                 <AnimatePresence>
                     {(phase === "titleSetup" || !isGameStart) && (
                         <motion.div
@@ -397,7 +397,7 @@ export default function StoryMode() {
                     </div>
                 )}
 
-                {/* NARRATOR (setup + any center text) */}
+                {/* NARRATOR (setup or narrator lines) */}
                 {isGameStart && (phase === "titleSetup" || (phase === "dialogue" && isNarrator)) && (
                     <div className="absolute inset-0 grid place-items-center px-6">
                         <motion.p
@@ -411,23 +411,36 @@ export default function StoryMode() {
                     </div>
                 )}
 
-                {/* CHARACTERS ROW */}
+                {/* CHARACTER DIALOGUE AT TOP */}
+                {isGameStart && phase === "dialogue" && !isNarrator && script[currentLine] && (
+                    <motion.p
+                        key={`dialogue-${currentLine}`}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className={`absolute top-14 max-w-2xl text-lg md:text-xl text-white bg-black/50 px-6 py-3 rounded-xl shadow
+                                ${script[currentLine].side === "left" ? "left-6" : "right-6"}`}
+                    >
+                        {script[currentLine].text}
+                    </motion.p>
+                )}
+
+                {/* CHARACTERS ROW (centered vertically) */}
                 {isGameStart && phase === "dialogue" && !isNarrator && (
-                    <div className="absolute inset-0 flex justify-between items-end md:items-center px-10 pb-6">
+                    <div className="absolute inset-0 flex justify-between items-center px-10">
                         <StoryCharacter
                             characterSide="left"
                             isActive={script[currentLine]?.side === "left"}
-                            dialogue={script[currentLine]?.side === "left" ? script[currentLine]?.text : ""}
                         />
                         <StoryCharacter
                             characterSide="right"
                             isActive={script[currentLine]?.side === "right"}
-                            dialogue={script[currentLine]?.side === "right" ? script[currentLine]?.text : ""}
                         />
                     </div>
                 )}
 
-                {/* TOGGLE SCENE LIST (titles, highlight current) */}
+                {/* TOGGLE SCENE LIST */}
                 <div className="hidden md:block">
                     <ToggleScene
                         scenarios={graph.list}
@@ -437,10 +450,16 @@ export default function StoryMode() {
                 </div>
             </div>
 
-            {/* QUESTION / CHOICES AREA (fades in when dialogue ends) */}
+            {/* QUESTION / QUIZ AREA */}
             <AnimatePresence mode="wait">
                 {isGameStart && phase === "quiz" && (
-                    <motion.div key={`qc-${scenarioId}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="w-full flex justify-center flex-grow-0">
+                    <motion.div
+                        key={`qc-${scenarioId}`}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="w-full flex justify-center flex-grow-0"
+                    >
                         <QuestionCard
                             scenario={scenario}
                             onChoice={handleChoice}
@@ -448,8 +467,15 @@ export default function StoryMode() {
                         />
                     </motion.div>
                 )}
+
                 {!isGameStart && (
-                    <motion.div key="startcard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex justify-center">
+                    <motion.div
+                        key="startcard"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="w-full flex justify-center"
+                    >
                         <StartCard onStart={handleStart} />
                     </motion.div>
                 )}
