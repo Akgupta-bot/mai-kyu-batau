@@ -7,14 +7,15 @@ import App from "./App.jsx";
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
 
 // Pages
-import LandingPage from "./pages/LandingPage.jsx";
-import AuthPage from "./pages/AuthPage.jsx";
-import OnboardingPage from "./pages/OnboardingPage.jsx";
-import PathUI from "./pages/PathUI.jsx";
-import StoryPage from "./pages/StoryPage.jsx";
-import AICoachPage from "./pages/AICoachPage.jsx";
-import DashboardPage from "./pages/DashboardPage.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
+import LandingPage from './pages/LandingPage.jsx';
+import AuthPage from './pages/AuthPage.jsx';
+import OnboardingPage from './pages/OnboardingPage.jsx';
+import PathUI from './pages/PathUI.jsx';
+import StoryPage from './pages/StoryPage.jsx';
+import AICoachPage from './pages/AICoachPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx'; 
+import EventsPage from './pages/EventsPage.jsx';
 
 import "./index.css";
 import StoryMode from "./pages/StoryMode.jsx";
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "path", element: <PathUI /> },
+  { path: "event", element: <EventsPage/>}
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
