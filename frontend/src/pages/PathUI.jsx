@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // ✅ Import Link
+import { Link } from "react-router-dom"; 
 import { FiLock } from "react-icons/fi";
 import LevelModal from "../components/LevelModal";
 import spaceBackground from "../assets/5539119.jpg";
-import pandaAvatar from "../assets/Panda.mp4"; // ✅ Your profile video
+import pandaAvatar from "../assets/Panda.mp4"; 
 
-// --- Icons ---
 const RocketIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -173,8 +172,7 @@ const PathUI = () => {
         </Link>
       </div>
 
-      {/* Background + Levels */}
-      {/* Background + Levels */}
+      
       <div
         className="h-screen w-screen bg-cover bg-center bg-fixed flex items-center justify-center"
         style={{ backgroundImage: `url(${spaceBackground})` }}
