@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       variants={sidebarVariants}
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      className="bg-slate-900/80 backdrop-blur-sm border-r border-slate-700 p-4 flex flex-col relative"
+      className="bg-black backdrop-blur-sm border-r border-slate-700 p-4 flex flex-col relative"
     >
       {/* --- Toggle Button --- */}
       <button

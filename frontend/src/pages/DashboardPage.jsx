@@ -13,6 +13,7 @@ const StatCard = ({ icon, title, value, color }) => (
     <p className="text-2xl font-bold text-white">{value}</p>
   </div>
 );
+
 const QuickActionCard = ({ icon, title, description, to }) => (
   <Link to={to}>
     <motion.div
@@ -30,7 +31,7 @@ const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
-    <div className="min-h-screen flex bg-slate-950">
+    <div className="min-h-screen flex bg-black">
       {/* <Sidebar /> */}
       <main className="flex-1 p-8 overflow-y-auto">
 
@@ -66,7 +67,6 @@ const DashboardPage = () => {
             />
           </div>
         </header>
-
 
         <div className="flex border-b border-slate-700 mb-8">
           <button

@@ -25,7 +25,6 @@ const SettingsItem = ({ icon, title, description, buttonText }) => (
 );
 
 const ProfilePage = () => {
-
   const mockUserData = {
     name: 'Harshit Sinha',
     email: 'harshit.sinha@example.com',
@@ -37,7 +36,7 @@ const ProfilePage = () => {
 
   return (
     <motion.div
-      className="p-8 text-white"
+      className="p-8 text-white bg-black min-h-screen"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -66,7 +65,6 @@ const ProfilePage = () => {
             </button>
           </ProfileCard>
         </div>
-
 
         <div className="lg:col-span-2 space-y-8">
           <ProfileCard>

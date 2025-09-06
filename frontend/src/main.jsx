@@ -46,7 +46,11 @@ const router = createBrowserRouter([
       { path: "/", element: <LandingPage /> },
 >>>>>>> 7771a7e (Added dashboard and profile prototype)
       { path: "coach", element: <AICoachPage /> },
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> e8fa661 (Updated the UI (black))
       { path: "story/:levelId", element: <StoryPage /> },
 <<<<<<< HEAD
       { path: "story/play", element: <StoryMode /> },
@@ -87,7 +91,11 @@ const router = createBrowserRouter([
     path: "/onboarding",
     element: <OnboardingPage />,
   },
+<<<<<<< HEAD
 >>>>>>> 7771a7e (Added dashboard and profile prototype)
+=======
+  { path: "path", element: <PathUI /> },
+>>>>>>> e8fa661 (Updated the UI (black))
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
