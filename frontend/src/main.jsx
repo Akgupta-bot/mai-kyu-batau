@@ -1,23 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Layouts
-import App from './App.jsx';
-import DashboardLayout from './layouts/DashboardLayout.jsx';
+import App from "./App.jsx";
+import DashboardLayout from "./layouts/DashboardLayout.jsx";
 
 // Pages
-import LandingPage from './pages/LandingPage.jsx';
-import AuthPage from './pages/AuthPage.jsx';
-import OnboardingPage from './pages/OnboardingPage.jsx';
-import PathUI from './pages/PathUI.jsx';
-import StoryPage from './pages/StoryPage.jsx';
-import AICoachPage from './pages/AICoachPage.jsx';
-import DashboardPage from './pages/DashboardPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
+import LandingPage from "./pages/LandingPage.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
+import OnboardingPage from "./pages/OnboardingPage.jsx";
+import PathUI from "./pages/PathUI.jsx";
+import StoryPage from "./pages/StoryPage.jsx";
+import AICoachPage from "./pages/AICoachPage.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
-import './index.css';
-import StoryMode from './pages/StoryMode.jsx';
+import "./index.css";
+import StoryMode from "./pages/StoryMode.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,9 +33,9 @@ const router = createBrowserRouter([
         element: <AuthPage />,
       },
       { path: "coach", element: <AICoachPage /> },
-      { path: "path", element: <PathUI /> },
+
       { path: "story/:levelId", element: <StoryPage /> },
-      { path: 'story/play', element: <StoryMode /> },
+      { path: "story/play", element: <StoryMode /> },
       {
         path: "/onboarding",
         element: <OnboardingPage />,
@@ -49,10 +49,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "path", element: <PathUI /> },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 );

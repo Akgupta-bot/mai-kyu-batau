@@ -6,7 +6,6 @@ import PathUI from './PathUI';
 import { FiPlayCircle, FiZap, FiCheckCircle, FiClock, FiSearch, FiGrid, FiCompass, FiCpu } from 'react-icons/fi';
 import pandaAvatar from '../assets/Panda.mp4'; 
 
-
 const StatCard = ({ icon, title, value, color }) => (
     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
         <div className={`text-3xl mb-3 ${color}`}>{icon}</div>
@@ -14,6 +13,7 @@ const StatCard = ({ icon, title, value, color }) => (
         <p className="text-2xl font-bold text-white">{value}</p>
     </div>
 );
+
 const QuickActionCard = ({ icon, title, description, to }) => (
     <Link to={to}>
         <motion.div 
@@ -27,12 +27,11 @@ const QuickActionCard = ({ icon, title, description, to }) => (
     </Link>
 );
 
-
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
-    <div className="min-h-screen flex bg-slate-950">
+    <div className="min-h-screen flex bg-black">
       {/* <Sidebar /> */}
       <main className="flex-1 p-8 overflow-y-auto">
         
@@ -69,7 +68,6 @@ const DashboardPage = () => {
           </div>
         </header>
 
-       
         <div className="flex border-b border-slate-700 mb-8">
             <button 
                 onClick={() => setActiveTab('overview')}

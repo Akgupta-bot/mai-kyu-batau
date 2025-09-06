@@ -3,13 +3,11 @@ import { motion } from 'framer-motion';
 import pandaAvatar from '../assets/Panda.mp4'; 
 import { FiUser, FiEdit2, FiShield, FiBell, FiLock } from 'react-icons/fi';
 
-
 const ProfileCard = ({ children, className }) => (
   <div className={`bg-slate-800/50 p-6 rounded-xl border border-slate-700 ${className}`}>
     {children}
   </div>
 );
-
 
 const SettingsItem = ({ icon, title, description, buttonText }) => (
   <div className="flex items-center justify-between p-4 border-b border-slate-700 last:border-b-0">
@@ -27,7 +25,6 @@ const SettingsItem = ({ icon, title, description, buttonText }) => (
 );
 
 const ProfilePage = () => {
- 
   const mockUserData = {
     name: 'Harshit Sinha',
     email: 'harshit.sinha@example.com',
@@ -39,7 +36,7 @@ const ProfilePage = () => {
 
   return (
     <motion.div 
-      className="p-8 text-white"
+      className="p-8 text-white bg-black min-h-screen"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -69,7 +66,6 @@ const ProfilePage = () => {
           </ProfileCard>
         </div>
 
-       
         <div className="lg:col-span-2 space-y-8">
           <ProfileCard>
             <h3 className="text-xl font-bold mb-4">Player Stats</h3>

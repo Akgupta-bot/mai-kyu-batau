@@ -1,6 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiMessageSquare, FiAward, FiCpu } from 'react-icons/fi';
+
+// SVG Icon Components defined locally to avoid import issues.
+const FiMessageSquare = (props) => (
+    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+);
+
+const FiAward = (props) => (
+    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <circle cx="12" cy="8" r="7"></circle>
+        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+    </svg>
+);
+
+const FiCpu = (props) => (
+    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+        <rect x="9" y="9" width="6" height="6"></rect>
+        <line x1="9" y1="1" x2="9" y2="4"></line>
+        <line x1="15" y1="1" x2="15" y2="4"></line>
+        <line x1="9" y1="20" x2="9" y2="23"></line>
+        <line x1="15" y1="20" x2="15" y2="23"></line>
+        <line x1="20" y1="9" x2="23" y2="9"></line>
+        <line x1="20" y1="14" x2="23" y2="14"></line>
+        <line x1="1" y1="9" x2="4" y2="9"></line>
+        <line x1="1" y1="14" x2="4" y2="14"></line>
+    </svg>
+);
+
 
 const Features = () => {
   const featureList = [
@@ -10,7 +39,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-slate-900">
+    <section id="features" className="py-20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-heading font-bold text-white">Everything You Need to Succeed</h2>
@@ -20,8 +49,8 @@ const Features = () => {
             {featureList.map((feature) => (
               <motion.div
                   key={feature.title}
-                  className="bg-slate-800 p-6 rounded-lg"
-                  whileHover={{ y: -5, boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)" }}
+                  className="bg-slate-900/50 p-6 rounded-xl border border-slate-800 backdrop-blur-sm"
+                  whileHover={{ y: -5, borderColor: 'rgba(59, 130, 246, 0.5)' }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -41,3 +70,4 @@ const Features = () => {
 };
 
 export default Features;
+

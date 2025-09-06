@@ -12,7 +12,6 @@ import {
 } from "react-icons/fi";
 import pandaAvatar from "../assets/Panda.mp4";
 
-
 const sidebarVariants = {
   open: {
     width: "16rem",
@@ -23,7 +22,6 @@ const sidebarVariants = {
     transition: { type: "spring", stiffness: 120, damping: 20 },
   },
 };
-
 
 const itemVariants = {
   open: { opacity: 1, x: 0, transition: { duration: 0.2, delay: 0.1 } },
@@ -45,7 +43,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       variants={sidebarVariants}
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      className="bg-slate-900/80 backdrop-blur-sm border-r border-slate-700 p-4 flex flex-col relative"
+      className="bg-black backdrop-blur-sm border-r border-slate-700 p-4 flex flex-col relative"
     >
       {/* --- Toggle Button --- */}
       <button

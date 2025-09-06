@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const AISection = () => {
   return (
-      <section id="ai" className="py-20 bg-slate-950">
+      <section id="ai" className="py-20">
           <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
               <motion.div 
                   className="lg:w-1/2"
@@ -17,8 +17,9 @@ const AISection = () => {
                       Got a question about a banned substance? Curious about the side effects? Just ask. Our AI assistant provides reliable, easy-to-understand information whenever you need it.
                   </p>
                   <motion.button
-                      className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-8 rounded-full transition-shadow duration-300 hover:shadow-glow"
+                      className="bg-white text-slate-900 font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:bg-slate-200"
                       whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                   >
                       Ask a Question
                   </motion.button>
@@ -30,7 +31,7 @@ const AISection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
               >
-                  <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                  <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800 backdrop-blur-sm">
                       <div className="flex flex-col space-y-4">
                           <div className="self-end bg-blue-500 text-white p-3 rounded-l-lg rounded-br-lg max-w-xs shadow-md">
                               What are the side effects of steroids?
@@ -48,3 +49,4 @@ const AISection = () => {
 };
 
 export default AISection;
+
