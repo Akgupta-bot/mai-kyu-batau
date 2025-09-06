@@ -1,17 +1,89 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'; // ✅ Import Link
-import { FiLock } from 'react-icons/fi';
-import LevelModal from '../components/LevelModal';
-import spaceBackground from '../assets/pexels-philippedonn-1169754.jpg';
-import pandaAvatar from '../assets/Panda.mp4'; // ✅ Your profile video
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // ✅ Import Link
+import { FiLock } from "react-icons/fi";
+import LevelModal from "../components/LevelModal";
+import spaceBackground from "../assets/5539119.jpg";
+import pandaAvatar from "../assets/Panda.mp4"; // ✅ Your profile video
 
 // --- Icons ---
-const RocketIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.5 13.5L2 12l1.5-3.5L5.5 10l2-1.5L6 5l3.5-1.5L11 5.5 12.5 4 14 5.5l2-1.5L14.5 5l-1.5 3.5 2 1.5-2 1.5 1.5 3.5-3.5-1.5-1.5 2zM22 2l-3 3"></path></svg>;
-const PlanetIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path></svg>;
-const SatelliteIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5-5"></path><path d="M12 5l-5 5"></path><path d="M19 12l-5 5"></path><path d="M12 19l5-5"></path><circle cx="12" cy="12" r="3"></circle></svg>;
-const GalaxyIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 6a6 6 0 1 0 6 6"></path><path d="M12 18a6 6 0 1 0-6-6"></path><path d="M12 12a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path></svg>;
-const StarIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>;
+const RocketIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-10 h-10 text-white"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5.5 13.5L2 12l1.5-3.5L5.5 10l2-1.5L6 5l3.5-1.5L11 5.5 12.5 4 14 5.5l2-1.5L14.5 5l-1.5 3.5 2 1.5-2 1.5 1.5 3.5-3.5-1.5-1.5 2zM22 2l-3 3"></path>
+  </svg>
+);
+const PlanetIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-10 h-10 text-white"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+  </svg>
+);
+const SatelliteIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-10 h-10 text-white"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12l5-5"></path>
+    <path d="M12 5l-5 5"></path>
+    <path d="M19 12l-5 5"></path>
+    <path d="M12 19l5-5"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+);
+const GalaxyIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-10 h-10 text-white"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 6a6 6 0 1 0 6 6"></path>
+    <path d="M12 18a6 6 0 1 0-6-6"></path>
+    <path d="M12 12a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
+  </svg>
+);
+const StarIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-10 h-10 text-white"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+  </svg>
+);
 
 // --- Levels ---
 const levels = [
@@ -77,7 +149,15 @@ const PathUI = () => {
         onClose={() => setSelectedLevel(null)}
       />
 
-      {/* ✅ Profile Panda Button in top-right */}
+      <div className="absolute top-6 left-6 z-50">
+        <Link
+          to="/event"
+          className="px-4 py-2 bg-slate-900/70 border border-slate-700 text-white rounded-full hover:bg-purple-600 transition-all"
+        >
+          Events
+        </Link>
+      </div>
+
       <div className="absolute top-6 right-6 z-50">
         <Link to="/dashboard">
           <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-700 hover:border-blue-500 transition-colors">
@@ -94,8 +174,9 @@ const PathUI = () => {
       </div>
 
       {/* Background + Levels */}
+      {/* Background + Levels */}
       <div
-        className="min-h-screen pt-24 pb-12 px-4 bg-cover bg-center bg-fixed"
+        className="h-screen w-screen bg-cover bg-center bg-fixed flex items-center justify-center"
         style={{ backgroundImage: `url(${spaceBackground})` }}
       >
         <div className="relative w-full max-w-2xl h-full flex items-center justify-center">
