@@ -9,11 +9,7 @@ import DashboardLayout from './layouts/DashboardLayout.jsx';
 // Pages
 import LandingPage from './pages/LandingPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
-<<<<<<< HEAD
-import AICoachPage from './pages/AICoachPage.jsx';
-=======
 import OnboardingPage from './pages/OnboardingPage.jsx';
->>>>>>> 7771a7e (Added dashboard and profile prototype)
 import PathUI from './pages/PathUI.jsx';
 import StoryPage from './pages/StoryPage.jsx';
 import AICoachPage from './pages/AICoachPage.jsx';
@@ -41,7 +37,6 @@ const router = createBrowserRouter([
       { path: "path", element: <PathUI /> },
       { path: "story/:levelId", element: <StoryPage /> },
       { path: 'story/play', element: <StoryMode /> },
-<<<<<<< HEAD
       {
         path: "/onboarding",
         element: <OnboardingPage />,
@@ -55,25 +50,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-=======
-    ],
-  },
-  {
-    element: <DashboardLayout />,
-    children: [
-      { path: "dashboard", element: <DashboardPage /> },
-      { path: "profile", element: <ProfilePage /> },
-    ],
-  },
-  {
-    path: "/login",
-    element: <AuthPage />,
-  },
-  {
-    path: "/onboarding",
-    element: <OnboardingPage />,
-  },
->>>>>>> 6954c5f (Added story mode)
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
