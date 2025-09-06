@@ -1,20 +1,26 @@
-export default function ToggleScene() {
+import { Check } from 'lucide-react';
+
+export default function ToggleScene({ scenarios, currentId, completedIds }) {
     return (
-        <div className="w-[25%] flex flex-col space-y-4 absolute right-[-220px] border border-white p-2 rounded-2xl">
-            <div className="flex-1 rounded-xl overflow-hidden relative bg-[#424242] flex items-center justify-center p-2">
-                <span className="text-white">Beginnings</span>
-            </div>
-            <div className="flex-1 rounded-xl overflow-hidden relative bg-[#424242] flex items-center justify-center p-2">
-                <span className="text-white">Temptations</span>
-            </div>
-            <div className="flex-1 rounded-xl overflow-hidden relative bg-[#424242] flex items-center justify-center p-2">
-                <span className="text-white">Consequences</span>
-            </div>
-            <div className="flex-1 rounded-xl overflow-hidden relative bg-[#424242] flex items-center justify-center p-2">
-                <span className="text-white">Redemption</span>
-            </div>
-            <div className="flex-1 rounded-xl overflow-hidden relative bg-[#424242] flex items-center justify-center p-2">
-                <span className="text-white">Legacy</span>
-            </div>
-        </div>)
+        <div className="w-[25%] flex flex-col space-y-3 absolute right-[-220px] top-0 bottom-0 my-auto border border-white/30 p-2 rounded-2xl bg-black/30 backdrop-blur-sm">
+            {scenarios.map((s) => {
+                const isCurrent = s.id === currentId;
+                const isDone = completedIds.has(s.id);
+                return (
+                    <div
+                        key={s.id}
+                        className={`flex-1 rounded-xl overflow-hidden relative p-2 grid place-items-center transition-all ${isCurrent
+                            ? "bg-gradient-to-br from-white/90 to-white/70 text-black ring-2 ring-blue-500"
+                            : "bg-[#424242] text-white"
+                            } ${isDone && !isCurrent ? "opacity-70" : ""}`}
+                    >
+                        <div className="flex items-center gap-2">
+                            {isDone && <Check className={`h-4 w-4 ${isCurrent ? "text-blue-600" : "text-white"}`} />}
+                            <span className={`text-sm md:text-base font-medium ${isCurrent ? "font-semibold" : ""}`}>{s.title}</span>
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    );
 }

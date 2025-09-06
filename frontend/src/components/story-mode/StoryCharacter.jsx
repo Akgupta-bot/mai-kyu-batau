@@ -1,26 +1,32 @@
-import AnimatedCharacter from '/animated-character-unscreen.gif'
-import AnimatedCharacterFixed from '/animated-character-unscreen-fixed.png'
+import { AnimatePresence, motion } from 'framer-motion';
 
-export default function StoryCharacter({ isNarrator, characterSide, isActive, dialogue }) {
-    if (isNarrator) return null
+import AnimatedCharacter from '/animated-character-unscreen.gif';
+import AnimatedCharacterFixed from '/animated-character-unscreen-fixed.png';
 
+export default function StoryCharacter({ characterSide, isActive, dialogue }) {
     return (
-        <div
-            className={`absolute top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6 ${characterSide === "left" ? "left-10" : "right-10"
-                }`}
-        >
-            {isActive && (
-                <p className="text-2xl text-black bg-white/60 px-3 py-1 rounded-lg">
-                    {dialogue}
-                </p>
-            )}
-            <img
+        <div className={`relative flex flex-col items-center ${characterSide === "left" ? "self-end" : "self-end"}`}>
+            <AnimatePresence>
+                {isActive && (
+                    <motion.p
+                        key={`speech-${characterSide}`}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        className="mb-4 text-lg md:text-xl text-black bg-white/80 px-4 py-2 rounded-xl shadow"
+                    >
+                        {dialogue}
+                    </motion.p>
+                )}
+            </AnimatePresence>
+
+            <motion.img
                 src={isActive ? AnimatedCharacter : AnimatedCharacterFixed}
-                className={`
-                    transition-all duration-700 ease-in-out
-                    ${isActive ? "w-125 opacity-100" : "w-50 opacity-70"}
-                `}
+                alt={characterSide}
+                animate={{ scale: isActive ? 1 : 0.85, opacity: isActive ? 1 : 0.7 }}
+                transition={{ type: "spring", stiffness: 140, damping: 18 }}
+                className={`w-[180px] md:w-[230px] ${characterSide === "left" ? "ml-4" : "mr-4"}`}
             />
         </div>
-    )
+    );
 }
