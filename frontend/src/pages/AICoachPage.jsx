@@ -33,7 +33,7 @@ const AICoachPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          session_id: "user123", // or dynamically assign per user
+          session_id: "user123",
           message: input,
         }),
       });
