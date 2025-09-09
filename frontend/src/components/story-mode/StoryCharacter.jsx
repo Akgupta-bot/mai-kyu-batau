@@ -3,26 +3,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AnimatedCharacter from '/animated-character-unscreen.gif';
 import AnimatedCharacterFixed from '/animated-character-unscreen-fixed.png';
 
-export default function StoryCharacter({ characterSide, isActive, dialogue }) {
+export default function StoryCharacter({ characterSide, isActive }) {
     return (
         <div
             className={`absolute top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6 ${characterSide === "left" ? "left-10" : "right-10"
                 }`}
         >
-            <AnimatePresence>
-                {isActive && (
-                    <motion.p
-                        key={`speech-${characterSide}`}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        className="mb-4 text-lg md:text-xl text-black bg-white/80 px-4 py-2 rounded-xl shadow"
-                    >
-                        {dialogue}
-                    </motion.p>
-                )}
-            </AnimatePresence>
-
             <motion.img
                 src={isActive ? AnimatedCharacter : AnimatedCharacterFixed}
                 alt={characterSide}

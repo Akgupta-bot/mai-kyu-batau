@@ -10,6 +10,7 @@ import StoryCharacter from '../components/story-mode/StoryCharacter'
 import ToggleScene from '../components/story-mode/ToggleScene'
 import LockerRoomImg from '/locker-room.jpg';
 import WinnerImg from '/winner.png'
+import DialogueCard from '../components/story-mode/DialogueCard';
 
 import { buildScenarioGraph, mapScenarioToScript } from '../utils/storyMode'
 
@@ -203,20 +204,13 @@ export default function StoryMode() {
                     </div>
                 )}
 
-                {/* CHARACTER DIALOGUE AT TOP */}
-                {isGameStart && phase === "dialogue" && !isNarrator && script[currentLine] && (
-                    <motion.p
-                        key={`dialogue-${currentLine}`}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className={`absolute top-14 max-w-2xl text-lg md:text-xl text-white bg-black/50 px-6 py-3 rounded-xl shadow
-                                ${script[currentLine].side === "left" ? "left-6" : "right-6"}`}
-                    >
-                        {script[currentLine].text}
-                    </motion.p>
-                )}
+                {/* CHARACTER DIALOGUE */}
+                <DialogueCard
+                    isGameStart={isGameStart}
+                    phase={phase}
+                    isNarrator={isNarrator}
+                    currentLine={script[currentLine]}
+                />
 
                 {/* CHARACTERS ROW (centered vertically) */}
                 {isGameStart && phase === "dialogue" && !isNarrator && (
