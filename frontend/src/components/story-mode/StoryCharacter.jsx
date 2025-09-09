@@ -8,7 +8,8 @@ export default function StoryCharacter({ characterSide, isActive, dialogue }) {
         <div
             className={`absolute top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6 ${characterSide === "left" ? "left-10" : "right-10"
                 }`}
-        >            <AnimatePresence>
+        >
+            <AnimatePresence>
                 {isActive && (
                     <motion.p
                         key={`speech-${characterSide}`}
@@ -25,7 +26,7 @@ export default function StoryCharacter({ characterSide, isActive, dialogue }) {
             <motion.img
                 src={isActive ? AnimatedCharacter : AnimatedCharacterFixed}
                 alt={characterSide}
-                animate={{ scale: isActive ? 2 : 0.85, opacity: isActive ? 1 : 0.7 }}
+                animate={{ scale: isActive ? 3 : 0.85, opacity: isActive ? 1 : 0.7 }}
                 transition={{ type: "spring", stiffness: 140, damping: 18 }}
                 className={`w-[180px] md:w-[230px] ${characterSide === "left" ? "ml-4" : "mr-4"}`}
             />
