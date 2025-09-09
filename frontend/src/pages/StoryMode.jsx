@@ -15,6 +15,7 @@ import DialogueCard from '../components/story-mode/DialogueCard';
 import { buildScenarioGraph, mapScenarioToScript } from '../utils/storyMode'
 
 import LLM_OUTPUT from '../dev-data/story-mode.json'
+import NarratorCard from '../components/story-mode/NarratorCard';
 
 // Scenario Background Images
 const SCENARIO_BG_IMGS = [BasketBallImg, LockerRoomImg, WinnerImg]
@@ -191,18 +192,12 @@ export default function StoryMode() {
                 )}
 
                 {/* NARRATOR (setup or narrator lines) */}
-                {isGameStart && (phase === "titleSetup" || (phase === "dialogue" && isNarrator)) && (
-                    <div className="absolute inset-0 grid place-items-center px-6">
-                        <motion.p
-                            key={`narrator-${currentLine}`}
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="max-w-3xl text-white text-xl md:text-2xl text-center bg-black/50 px-5 py-4 rounded-2xl"
-                        >
-                            {script[currentLine]?.text}
-                        </motion.p>
-                    </div>
-                )}
+                <NarratorCard
+                    isGameStart={isGameStart}
+                    phase={phase}
+                    isNarrator={isNarrator}
+                    currentLine={script[currentLine]}
+                />
 
                 {/* CHARACTER DIALOGUE */}
                 <DialogueCard
