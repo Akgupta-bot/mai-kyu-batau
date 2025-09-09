@@ -10,7 +10,6 @@ import StoryCharacter from '../components/story-mode/StoryCharacter'
 import ToggleScene from '../components/story-mode/ToggleScene'
 import LockerRoomImg from '/locker-room.jpg';
 import WinnerImg from '/winner.png'
-import StartCard from '../components/story-mode/StartCard'
 
 import { buildScenarioGraph, mapScenarioToScript } from '../utils/storyMode'
 
@@ -258,18 +257,6 @@ export default function StoryMode() {
                             onChoice={handleChoice}
                             onQuizResult={handleQuizResult}
                         />
-                    </motion.div>
-                )}
-
-                {!isGameStart && (
-                    <motion.div
-                        key="startcard"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="w-full flex justify-center"
-                    >
-                        <StartCard onStart={handleStart} />
                     </motion.div>
                 )}
             </AnimatePresence>
