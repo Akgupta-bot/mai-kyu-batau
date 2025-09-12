@@ -57,21 +57,6 @@ export default function StoryMode() {
 
     const bgImg = SCENARIO_BG_IMGS[scenarioIndex % SCENARIO_BG_IMGS.length];
 
-    // Function to Start the Module
-    function handlePlay() {
-        setIsGameStart(true)
-
-        // 1) Use the cached audio to generate sound using React Query
-
-        /**
-         *   - Cache Audio Files ? 
-         *   - Will have to keep track of current audio being played, text
-         *     being displayed and character in action. 
-         */
-
-        setCurrentLine(0)
-    }
-
     // audio handling per line
     const audioRef = useRef(null);
     useEffect(() => {
@@ -207,16 +192,18 @@ export default function StoryMode() {
                     currentLine={script[currentLine]}
                 />
 
-                {/* CHARACTERS ROW (centered vertically) */}
-                {isGameStart && phase === "dialogue" && !isNarrator && (
+                {/* CHARACTERS ROW */}
+                {isGameStart && (phase === "dialogue" || phase === "quiz") && !isNarrator && (
                     <div className="absolute inset-0 flex justify-between items-center px-10">
                         <StoryCharacter
                             characterSide="left"
                             isActive={script[currentLine]?.side === "left"}
+                            phase={phase}
                         />
                         <StoryCharacter
                             characterSide="right"
                             isActive={script[currentLine]?.side === "right"}
+                            phase={phase}
                         />
                     </div>
                 )}
