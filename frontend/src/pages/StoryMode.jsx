@@ -4,18 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 
 import BasketBallImg from '/basketball-court.jpg'
-import QuestionCard from '../components/story-mode/QuestionCard'
 import LyffyAudio from '/ko.mp3'
 import StoryCharacter from '../components/story-mode/StoryCharacter'
 import ToggleScene from '../components/story-mode/ToggleScene'
 import LockerRoomImg from '/locker-room.jpg';
 import WinnerImg from '/winner.png'
 import DialogueCard from '../components/story-mode/DialogueCard';
+import QuizArea from '../components/story-mode/QuizArea';
+import NarratorCard from '../components/story-mode/NarratorCard';
 
 import { buildScenarioGraph, mapScenarioToScript } from '../utils/storyMode'
 
 import LLM_OUTPUT from '../dev-data/story-mode.json'
-import NarratorCard from '../components/story-mode/NarratorCard';
 
 // Scenario Background Images
 const SCENARIO_BG_IMGS = [BasketBallImg, LockerRoomImg, WinnerImg]
@@ -219,23 +219,13 @@ export default function StoryMode() {
             </div>
 
             {/* QUESTION / QUIZ AREA */}
-            <AnimatePresence mode="wait">
-                {isGameStart && phase === "quiz" && (
-                    <motion.div
-                        key={`qc-${scenarioId}`}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="w-full flex justify-center flex-grow-0"
-                    >
-                        <QuestionCard
-                            scenario={scenario}
-                            onChoice={handleChoice}
-                            onQuizResult={handleQuizResult}
-                        />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <QuizArea isGameStart={isGameStart}
+                phase={phase}
+                scenarioId={scenarioId}
+                scenario={scenario}
+                onHandleChoice={handleChoice}
+                onHandleQuizResult={handleQuizResult}
+            />
         </div>
     );
 }
