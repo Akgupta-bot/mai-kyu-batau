@@ -207,16 +207,14 @@ export default function StoryMode() {
                         />
                     </div>
                 )}
-
-                {/* TOGGLE SCENE LIST */}
-                <div className="hidden md:block">
-                    <ToggleScene
-                        scenarios={graph.list}
-                        currentId={scenarioId}
-                        completedIds={completedIds}
-                    />
-                </div>
             </div>
+
+            {/* TOGGLE SCENE LIST */}
+            <ToggleScene
+                scenarios={graph.list}
+                currentId={scenarioId}
+                completedIds={completedIds}
+            />
 
             {/* QUESTION / QUIZ AREA */}
             <QuizArea isGameStart={isGameStart}

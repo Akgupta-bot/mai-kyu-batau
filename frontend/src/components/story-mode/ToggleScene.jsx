@@ -2,14 +2,14 @@ import { Check } from 'lucide-react';
 
 export default function ToggleScene({ scenarios, currentId, completedIds }) {
     return (
-        <div className="w-[25%] flex flex-col space-y-3 absolute right-[-220px] top-0 bottom-0 my-auto border border-white/30 p-2 rounded-2xl bg-black/30 backdrop-blur-sm">
+        <div className="w-50 h-auto flex flex-col space-y-3 absolute right-[50px] top-[20%] my-auto border border-white/30 p-2 rounded-2xl bg-black/30 backdrop-blur-sm">
             {scenarios.map((s) => {
                 const isCurrent = s.id === currentId;
                 const isDone = completedIds.has(s.id);
                 return (
                     <div
                         key={s.id}
-                        className={`flex-1 rounded-xl overflow-hidden relative p-2 grid place-items-center transition-all ${isCurrent
+                        className={`flex-1 rounded-xl overflow-hidden relative p-2 transition-all ${isCurrent
                             ? "bg-gradient-to-br from-white/90 to-white/70 text-black ring-2 ring-blue-500"
                             : "bg-[#424242] text-white"
                             } ${isDone && !isCurrent ? "opacity-70" : ""}`}
