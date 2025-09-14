@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 import BasketBallImg from '/basketball-court.jpg'
 import LyffyAudio from '/ko.mp3'
@@ -12,6 +13,7 @@ import WinnerImg from '/winner.png'
 import DialogueCard from '../components/story-mode/DialogueCard';
 import QuizArea from '../components/story-mode/QuizArea';
 import NarratorCard from '../components/story-mode/NarratorCard';
+import pandaAvatar from "../assets/Panda.mp4";
 
 import { buildScenarioGraph, mapScenarioToScript } from '../utils/storyMode'
 
@@ -145,6 +147,20 @@ export default function StoryMode() {
 
     return (
         <div className="h-screen w-full overflow-hidden flex flex-col items-center justify-center space-y-6 p-4">
+            <div className="absolute top-6 right-6 z-50">
+                <Link to="/dashboard">
+                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-700 hover:border-blue-500 transition-colors">
+                        <video
+                            src={pandaAvatar}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                </Link>
+            </div>
             {/* SCENE WRAPPER */}
             <div className="w-[60%] h-[60%] relative rounded-2xl shadow-2xl overflow-hidden">
                 {/* Dynamic background per scenario */}
