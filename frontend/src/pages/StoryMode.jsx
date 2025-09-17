@@ -18,6 +18,7 @@ import pandaAvatar from "../assets/Panda.mp4";
 import { buildScenarioGraph, mapScenarioToScript } from '../utils/storyMode'
 
 import LLM_OUTPUT from '../dev-data/story-mode.json'
+import InfoBox from '../components/story-mode/InfoBox';
 
 // Scenario Background Images
 const SCENARIO_BG_IMGS = [BasketBallImg, LockerRoomImg, WinnerImg]
@@ -146,7 +147,7 @@ export default function StoryMode() {
     const title = scenario.title;
 
     return (
-        <div className="h-screen w-full overflow-hidden flex flex-col items-center justify-center space-y-6 p-4">
+        <div className="h-screen w-full overflow-hidden flex flex-col items-center justify-center space-y-6 p-4 relative">
             <div className="absolute top-6 right-6 z-50">
                 <Link to="/dashboard">
                     <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-700 hover:border-blue-500 transition-colors">
@@ -161,6 +162,10 @@ export default function StoryMode() {
                     </div>
                 </Link>
             </div>
+
+            {/* Info Box */}
+            <InfoBox scenario={{ title: undefined, setup: undefined }} />
+
             {/* SCENE WRAPPER */}
             <div className="w-[60%] h-[60%] relative rounded-2xl shadow-2xl overflow-hidden">
                 {/* Dynamic background per scenario */}
